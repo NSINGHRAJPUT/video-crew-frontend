@@ -1,51 +1,35 @@
-import React from 'react';
-import v1 from '../assets/portfolio/1.jpeg';
-import v2 from '../assets/portfolio/2.jpg';
-import v3 from '../assets/portfolio/3.jpg';
-import v4 from '../assets/portfolio/4.jpg';
-import v5 from '../assets/portfolio/5.jpg';
+import { useState, useEffect } from 'react';
 import left from '../assets/portfolio/left.jpeg';
 import right from '../assets/portfolio/right.jpeg';
+import ImgWithFallback from '../utils/FallbackImage';
 
+interface PortfolioItem {
+  id: string;
+  title: string;
+  image: string;
+  videoUrl?: string;
+}
 
 const VideoPortfolio = () => {
-  const portfolioItems = [
-    {
-      id: 1,
-      title: "Logistics Promo",
-      image: "/api/placeholder/600/400",
-      category: "logistics",
-      description: "Container shipping and logistics promotional video"
-    },
-    {
-      id: 2,
-      title: "Chanel Promotion",
-      image: "/api/placeholder/600/400",
-      category: "luxury",
-      description: "Luxury perfume commercial"
-    },
-    {
-      id: 3,
-      title: "Pizza Company",
-      image: "/api/placeholder/600/400",
-      category: "food",
-      description: "Food and lifestyle promotional content"
-    },
-    {
-      id: 4,
-      title: "Nutella Recipe",
-      image: "/api/placeholder/600/400",
-      category: "recipe",
-      description: "Dessert recipe and food styling"
-    },
-    {
-      id: 5,
-      title: "Hublot Watch",
-      image: "/api/placeholder/600/400",
-      category: "luxury",
-      description: "Luxury watch commercial"
-    }
-  ];
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPortfolio = async () => {
+      try {
+        const response = await fetch('https://video-crew-backend-production.up.railway.app/api/portfolio/');
+        const data = await response.json();
+        setPortfolioItems(data);
+      } catch (error) {
+        console.error('Error fetching portfolio:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
 
   return (
     <div className="w-full text-white">
@@ -100,154 +84,43 @@ const VideoPortfolio = () => {
         {/* Portfolio Grid */}
         <div className="px-8 py-16">
           <div className="max-w-6xl mx-auto space-y-6">
-
-            {/* Logistics Promo */}
-            <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
-              <div className="aspect-[16/9] relative bg-gradient-to-br from-teal-800 to-orange-800">
-                <img
-                  src={v1}
-                  alt="Container Port"
-                  className="w-full h-full object-cover"
-                />
-
-
-
-
-                <div className="absolute bottom-6 right-6">
-                  <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
-                    {/* Play Icon */}
-                    <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
-                      ▶
-                    </div>
-
-                    {/* Text content */}
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">Logistics Promo</span>
-                      <span className="text-xs text-gray-300">Play Video</span>
-                    </div>
-                  </button>
-                </div>
-
+            {loading ? (
+              <div className="text-center py-16">
+                <div className="text-gray-400">Loading portfolio...</div>
               </div>
-            </div>
-
-            {/* Chanel Promotion */}
-            <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
-              <div className="aspect-[16/9] relative bg-gradient-to-br from-amber-900 to-black">
-                <img
-                  src={v2}
-                  alt="Container Port"
-                  className="w-full h-full object-cover"
-                />
-
-
-
-                <div className="absolute bottom-6 right-6">
-                  <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
-                    {/* Play Icon */}
-                    <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
-                      ▶
+            ) : (
+              portfolioItems.map((item) => (
+                <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer">
+                  <div className="aspect-[16/9] relative bg-gradient-to-br from-gray-800 to-gray-900">
+                    <ImgWithFallback
+                      src={item.image }
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-6 right-6">
+                      <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
+                        <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
+                          ▶
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <span className="text-sm font-semibold">{item.title}</span>
+                          <span className="text-xs text-gray-300">Play Video</span>
+                        </div>
+                      </button>
                     </div>
-
-                    {/* Text content */}
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">Chanel Promotion</span>
-                      <span className="text-xs text-gray-300">Play Video</span>
-                    </div>
-                  </button>
+                  </div>
                 </div>
-
-              </div>
-            </div>
-
-            {/* Pizza Company */}
-            <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
-              <div className="aspect-[16/9] relative bg-gradient-to-br from-orange-900 to-red-900">
-                <img
-                  src={v3}
-                  alt="Container Port"
-                  className="w-full h-full object-cover"
-                />
-
-
-                <div className="absolute bottom-6 right-6">
-                  <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
-                    {/* Play Icon */}
-                    <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
-                      ▶
-                    </div>
-
-                    {/* Text content */}
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">Pizza Company</span>
-                      <span className="text-xs text-gray-300">Play Video</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Nutella Recipe */}
-            <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
-              <div className="aspect-[16/9] relative bg-gradient-to-br from-amber-800 to-orange-900">
-                <img
-                  src={v4}
-                  alt="Container Port"
-                  className="w-full h-full object-cover"
-                />
-
-                <div className="absolute bottom-6 right-6">
-                  <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
-                    {/* Play Icon */}
-                    <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
-                      ▶
-                    </div>
-
-                    {/* Text content */}
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">Nutella Recipe</span>
-                      <span className="text-xs text-gray-300">Play Video</span>
-                    </div>
-                  </button>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Hublot Watch */}
-            <div className="group relative overflow-hidden rounded-2xl cursor-pointer">
-              <div className="aspect-[16/9] relative bg-gradient-to-br from-amber-900 to-black">
-                <img
-                  src={v5}
-                  alt="Container Port"
-                  className="w-full h-full object-cover"
-                />
-
-                <div className="absolute bottom-6 right-6">
-                  <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
-                    {/* Play Icon */}
-                    <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
-                      ▶
-                    </div>
-
-                    {/* Text content */}
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-semibold">Hublot Watch</span>
-                      <span className="text-xs text-gray-300">Play Video</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-
+              ))
+            )}
           </div>
 
-          {/* Load More Button */}
-          <div className="text-center mt-16">
-            <button className="bg-blue-600 hover:bg-blue-700 px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 transform hover:scale-105">
-              Load More
-            </button>
-          </div>
+          {!loading && portfolioItems.length > 0 && (
+            <div className="text-center mt-16">
+              <button className="bg-blue-600 hover:bg-blue-700 px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 transform hover:scale-105">
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       </main>
     </div>
