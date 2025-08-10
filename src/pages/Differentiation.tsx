@@ -71,12 +71,12 @@ function ImgWithFallback({ src, alt, className }: { src: string; alt: string; cl
 
 const DifferentiatorPage = () => {
   return (
-    <div className="text-white max-w-7xl mx-auto min-h-screen w-full pt-24 font-sans">
+    <div className="text-white  min-h-screen w-full pt-24 font-sans">
       {/* Hero Section */}
-      <section className="relative w-full">
+      <section className="relative w-full max-w-7xl mx-auto">
         <section className="w-full bg-[#090A0C] overflow-hidden ">
-          <div className="w-full  flex  justify-between items-center">
-            <div>
+          <div className="w-full  md:flex  justify-between items-center">
+            <div >
               <p className="text-sm text-gray-400 mb-2">왜 비디오크루를 선택해야 할까요? ​</p>
               <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4">
                 비디오크루만의 특별함
@@ -95,7 +95,7 @@ const DifferentiatorPage = () => {
       </section>
 
       {/* Differentiator Cards */}
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex flex-col gap-24">
           {differentiators.map((item, idx) => {
             const isEven = idx % 2 === 1;
@@ -140,7 +140,7 @@ const DifferentiatorPage = () => {
 
       {/* Stats Section with Background */}
       <div
-        className="py-14 px-6 md:px-20 pb-20"
+        className="py-14 px-6 md:px-20 pb-20 "
         style={{
           backgroundImage: `url(${statsbg})`,
           backgroundSize: "100% 100%",
@@ -149,7 +149,7 @@ const DifferentiatorPage = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="flex flex-col items-center justify-center max-w-5xl mx-auto mt-5 pb-4">
+        <div className="flex flex-col items-center justify-center  mx-auto mt-5 pb-4">
           <div className="text-center text-white">
             <div className="text-3xl mb-1">
               업계 최고 수준의 맞춤형 영상 콘텐츠

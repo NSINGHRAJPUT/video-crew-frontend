@@ -67,14 +67,14 @@ export default function About() {
     <main className="bg-black text-white  font-sans w-full pt-24">
       {/* HERO SECTION */}
       <section className="w-full  max-w-7xl mx-auto overflow-hidden ">
-        <div className="w-full px-6 md:px-0 flex  justify-around items-center">
+        <div className="w-full px-6 md:px-0 md:flex  justify-around items-center">
           <div>
             <p className="text-gray-400">Who we are, Video Crew​</p>
-          <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4">
-            스토리로 말하는 영상 콘텐츠,<br />
-            시선을 사로잡는 영상,<br />
-            더 이상 고민하지 마세요!
-          </h1>
+            <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4">
+              스토리로 말하는 영상 콘텐츠,<br />
+              시선을 사로잡는 영상,<br />
+              더 이상 고민하지 마세요!
+            </h1>
           </div>
           <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mb-8">
             비디오크루는 다양한 업종의 프로젝트 경험과 탄탄한 영상 기획,

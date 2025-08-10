@@ -143,7 +143,7 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newErrors: Record<string, string> = {};
     Object.keys(formData).forEach(field => {
       const error = validateField(field, formData[field as keyof typeof formData]);
@@ -151,23 +151,40 @@ export default function ContactForm() {
     });
 
     setErrors(newErrors);
-    console.log('Form Data:', formData);
+    
     if (Object.keys(newErrors).length === 0) {
-      alert('문의가 성공적으로 전송되었습니다!');
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        website: '',
-        projectType: '',
-        projectDetails: '',
-        budget: '',
-        timeline: '',
-        referralSource: '',
-        description: '',
-        socialMedia: '',
-        privacyPolicy: false
-      });
+      try {
+        const response = await fetch('https://video-crew-backend-production.up.railway.app/api/contact/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        if (response.ok) {
+          alert('문의가 성공적으로 전송되었습니다!');
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            website: '',
+            projectType: '',
+            projectDetails: '',
+            budget: '',
+            timeline: '',
+            referralSource: '',
+            description: '',
+            socialMedia: '',
+            privacyPolicy: false
+          });
+        } else {
+          alert('문의 전송에 실패했습니다. 다시 시도해주세요.');
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('문의 전송에 실패했습니다. 다시 시도해주세요.');
+      }
     }
   };
 

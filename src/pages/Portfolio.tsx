@@ -4,10 +4,10 @@ import right from '../assets/portfolio/right.jpeg';
 import ImgWithFallback from '../utils/FallbackImage';
 
 interface PortfolioItem {
-  id: string;
+  _id: string;
   title: string;
-  image: string;
-  videoUrl?: string;
+  thumbnail_url: string;
+  video_url: string;
 }
 
 const VideoPortfolio = () => {
@@ -90,19 +90,25 @@ const VideoPortfolio = () => {
               </div>
             ) : (
               portfolioItems.map((item) => (
-                <div key={item.id} className="group relative overflow-hidden rounded-2xl cursor-pointer">
+                <div key={item._id} className="group relative overflow-hidden rounded-2xl">
                   <div className="aspect-[16/9] relative bg-gradient-to-br from-gray-800 to-gray-900">
                     <ImgWithFallback
-                      src={item.image }
+                      src={item.thumbnail_url}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-6 right-6">
-                      <button className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition">
+                      <button 
+                        onClick={() => {
+                          console.log(item.video_url);
+                          return window.open(item.video_url, '_blank')
+                        }}
+                        className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition"
+                      >
                         <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
                           ▶
                         </div>
-                        <div className="flex flex-col items-start">
+                        <div className="flex flex-col items-start cursor-pointer">
                           <span className="text-sm font-semibold">{item.title}</span>
                           <span className="text-xs text-gray-300">Play Video</span>
                         </div>

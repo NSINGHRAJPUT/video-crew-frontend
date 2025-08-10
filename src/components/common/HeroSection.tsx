@@ -25,7 +25,7 @@ export default function HeroSection({ sliderTexts, backgroundImage }: HeroSectio
   const handleDotClick = (idx: number) => setCurrent(idx);
 
   return (
-    <section className="relative h-[90vh] md:h-[90vh] flex items-end overflow-hidden">
+    <section className="relative h-[60vh] md:h-[90vh] flex items-end overflow-hidden">
       <img
         src={backgroundImage}
         alt="Hero Background"
