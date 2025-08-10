@@ -168,7 +168,7 @@ const ProcessPage = () => {
           </p>
         </div>
       
-          <ImgWithFallback image={heroImg} className=" h-full aspect-[16/9] border-[1.5px] border-gray-700 shadow-lg" />
+          <ImgWithFallback children={""} image={heroImg} className=" h-full aspect-[16/9] border-[1.5px] border-gray-700 shadow-lg" />
         
       </section>
 

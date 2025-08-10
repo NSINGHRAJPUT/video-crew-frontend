@@ -1,4 +1,3 @@
-import React from "react";
 
 type FullWidthBackgroundProps = {
   src: string; // Image URL or path

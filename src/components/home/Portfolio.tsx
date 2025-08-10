@@ -15,7 +15,7 @@ const imagesP = [p1, p2, p3, p4, p5];
 const imagesB = [b1, b2, b3, b4, b5];
 
 // Helper for robust auto-scrolling, works for both directions
-function useAutoScroll(ref: React.RefObject<HTMLDivElement>, speed: number) {
+function useAutoScroll(ref: React.RefObject<HTMLDivElement | null>, speed: number) {
   useEffect(() => {
     const container = ref.current;
     if (!container) return;
@@ -49,8 +49,7 @@ export default function Portfolio() {
 
   const renderCarousel = (
     items: string[],
-    ref: React.RefObject<HTMLDivElement>,
-    label: string
+    ref: React.RefObject<HTMLDivElement | null>,
   ) => {
     // Robust: always at least 6–8 slides (works for 3 original images)
     const MINCOUNT = 6;
@@ -95,8 +94,8 @@ export default function Portfolio() {
         <p className="text-white mb-8">모든 프레임에 가치를 담다, 비디오크루</p>
       </div>
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-10">
-        <div>{renderCarousel(imagesP, scrollRefP, "Project")}</div>
-        <div>{renderCarousel(imagesB, scrollRefB, "Build")}</div>
+        <div>{renderCarousel(imagesP, scrollRefP)}</div>
+        <div>{renderCarousel(imagesB, scrollRefB)}</div>
       </div>
       {/* Button */}
       <div className="w-full mt-12 flex justify-center">
