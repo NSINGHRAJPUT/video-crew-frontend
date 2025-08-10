@@ -1,9 +1,9 @@
 import React from "react";
-import heroimg from "../assets/differentiator/Frame 424.webp";
-import diff1Img from "../assets/differentiator/Frame 425.webp";
-import diff2Img from "../assets/differentiator/Frame 426.webp";
-import diff3Img from "../assets/differentiator/Frame 427.webp";
-import diff4Img from "../assets/differentiator/Frame 398.webp";
+import heroimg from "../assets/Differentiator/Frame 424.webp";
+import diff1Img from "../assets/Differentiator/Frame 425.webp";
+import diff2Img from "../assets/Differentiator/Frame 426.webp";
+import diff3Img from "../assets/Differentiator/Frame 427.webp";
+import diff4Img from "../assets/Differentiator/Frame 398.webp";
 import statsbg from "../assets/home/hback5.png";
 
 import fallbackImg from "../assets/fallback.jpg";
