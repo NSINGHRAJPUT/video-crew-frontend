@@ -9,6 +9,7 @@ import statsbg from "../assets/home/hback5.png";
 import fallbackImg from "../assets/fallback.jpg";
 import HeroSection from "../components/common/HeroSection";
 import { NavLink } from "react-router-dom";
+import FeatureSection from "../components/differentiator/FeatureSection";
 
 const differentiators = [
   {
@@ -88,11 +89,14 @@ const DifferentiatorPage = () => {
             </p>
           </div>
         </section>
+
         <div className="w-[84vw] mx-auto border-[1px] border-gray-800">
           <HeroSection sliderTexts={sliderTexts} backgroundImage={heroimg} />
 
         </div>
+
       </section>
+        <FeatureSection />
 
       {/* Differentiator Cards */}
       <div className="max-w-7xl mx-auto px-4 py-12">

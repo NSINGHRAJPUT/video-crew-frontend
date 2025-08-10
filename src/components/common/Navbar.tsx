@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import logo from '../../assets/logo.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +17,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-[#080A0C]/70 backdrop-blur-sm h-[76px] flex items-center justify-between px-6 md:px-20 border-b border-white/10">
       {/* Logo */}
-      <div className="flex items-center font-black tracking-wider text-lg">
+      <div className="flex items-center">
         <NavLink to="/" onClick={() => setIsOpen(false)}>
-          <span className="text-white">VIDEO</span>
-          <span className="ml-1.5 px-2 py-0.5 bg-white text-[#080A0C] text-[12px] font-black tracking-tighter rounded">
-            CREW
-          </span>
+          <img src={logo} alt="Video Crew" className="h-8" />
         </NavLink>
       </div>
 
