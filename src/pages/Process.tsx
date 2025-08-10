@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import fallbackImg from "../assets/fallback.jpg";
-import heroImg from "../assets/process/1.webp";
-import step2Img from "../assets/process/2.webp";
-import step3Img from "../assets/process/3.webp";
-import step4Img from "../assets/process/4.webp";
-import step5Img from "../assets/process/5.webp";
-import step6Img from "../assets/process/6.webp";
-import step7Img from "../assets/process/7.webp";
+import heroImg from "../assets/Process/1.webp";
+import step2Img from "../assets/Process/2.webp";
+import step3Img from "../assets/Process/3.webp";
+import step4Img from "../assets/Process/4.webp";
+import step5Img from "../assets/Process/5.webp";
+import step6Img from "../assets/Process/6.webp";
+import step7Img from "../assets/Process/7.webp";
 import "../App.css"; // Assuming you have a CSS file for custom styles
 import { NavLink } from "react-router-dom";
 
