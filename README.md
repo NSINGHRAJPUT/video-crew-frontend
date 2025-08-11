@@ -1,69 +1,131 @@
-# React + TypeScript + Vite
+# 🎬 Video Crew Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, dark-themed **portfolio website with CMS** for a video production company.  
+Pixel-perfect implementation from Figma designs, fully responsive, with smooth animations and a complete admin backend for content management.
 
-Currently, two official plugins are available:
+## 📌 Project Overview
+- **Frontend:** React 18 + TypeScript + Tailwind CSS
+- **Backend:** Node.js + Express + MongoDB
+- **Theme:** Dark mode with black/white scheme.
+- **Goal:** Showcase portfolio videos, explain processes, and highlight company differentiators with a full-featured admin panel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌐 Live Demo
+- **Frontend:** _your-frontend-link_
+- **Backend API:** _your-api-link_
+- **Admin Panel:** _your-admin-panel-link_
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📷 Pages Implemented
+- **Home** – Hero slider, features, portfolio preview
+- **About Us** – Company info, values, work culture
+- **Process** – Step-by-step visual process timeline
+- **Portfolio** – Video/item filtering, details
+- **Differentiator** – Company's key strengths
+- **Contact** – Form submission, location, contact details
+- **Admin Panel** – Manage portfolio, view/edit contact inquiries, media uploads
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚀 Features
+### Frontend
+- Pixel-perfect Figma match
+- Fully responsive (mobile → large desktop)
+- Smooth scroll animations & hover effects
+- Interactive video modals
+- Auto-scrolling carousels
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Backend
+- RESTful API for:
+  - **Authentication** – JWT-based admin login
+  - **Portfolio CRUD**
+  - **Contact Form Submission & Dashboard**
+  - **Image & Video Upload**
+- Secure admin-only endpoints
+- File storage (via `multer`) 
+- MongoDB models with timestamp tracking
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Tech Stack
+### Frontend
+- React 18
+- TypeScript
+- Tailwind CSS
+- React Router
+- Axios
+
+### Backend
+- Node.js
+- Express
+- MongoDB (Mongoose)
+- JWT Authentication (`jsonwebtoken`)
+- Password hashing (`bcryptjs`)
+- Multer for file uploads
+- CORS & dotenv
+
+---
+
+
+---
+
+## ⚡ API Endpoints
+
+### Auth
+| Method | Endpoint        | Description            |
+|--------|----------------|------------------------|
+| POST   | /api/auth/login | Admin login (JWT)     |
+
+### Portfolio
+| Method | Endpoint                | Description      |
+|--------|------------------------|------------------|
+| GET    | /api/portfolio         | List items (public) |
+| GET    | /api/portfolio/:id     | Single item (public) |
+| POST   | /api/portfolio         | Create item (admin)  |
+| PUT    | /api/portfolio/:id     | Update item (admin)  |
+| DELETE | /api/portfolio/:id     | Delete item (admin)  |
+
+### Contact
+| Method | Endpoint         | Description |
+|--------|-----------------|-------------|
+| POST   | /api/contact    | Submit form (public) |
+| GET    | /api/contact    | List inquiries (admin) |
+| PUT    | /api/contact/:id| Update inquiry (admin) |
+
+### Upload
+| Method | Endpoint              | Description |
+|--------|----------------------|-------------|
+| POST   | /api/upload/image    | Upload image (admin) |
+| POST   | /api/upload/video    | Upload video (admin) |
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repository
+**Frontend**
+
+git clone https://github.com/NSINGHRAJPUT/video-crew-frontend.git
+cd video-crew-frontend
+npm install
+npm run dev
+
+**Backend**
+
+git clone https://github.com/NSINGHRAJPUT/video-crew-backend.git
+cd video-crew-backend
+npm install
+  Create `.env` in **backend**:
+  MONGO_URI=mongodb://localhost:27017/videocrew
+  JWT_SECRET=your_jwt_secret_here
+  PORT=4000
+  EMAIL_PASSWORD = your_app_password
+  EMAIL_USER = you_email
+
+npm run dev
+
+
+
+
