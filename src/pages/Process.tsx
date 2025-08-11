@@ -7,7 +7,7 @@ import step4Img from "../assets/Process/4.webp";
 import step5Img from "../assets/Process/5.webp";
 import step6Img from "../assets/Process/6.webp";
 import step7Img from "../assets/Process/7.webp";
-import "../App.css"; // Assuming you have a CSS file for custom styles
+import "../App.css";
 import { NavLink } from "react-router-dom";
 
 interface FeatureCardData {
@@ -27,7 +27,10 @@ function ImgWithFallback({
   image,
   children,
   ...props
-}: { image: string; children: React.ReactNode } & React.HTMLAttributes<HTMLDivElement>) {
+}: {
+  image: string;
+  children: React.ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) {
   const [imgSrc, setImgSrc] = React.useState(image);
   return (
     <div
@@ -38,11 +41,14 @@ function ImgWithFallback({
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         boxShadow: "0px 4px 32px rgba(22,29,43,0.25)",
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
         ...props.style,
       }}
-      className={`relative overflow-x-hidden border-[1px] border-gray-800 aspect-[16/9] flex flex-col justify-end ${props.className || ""}`}
+      className={`relative overflow-x-hidden border-[1px] border-gray-800 aspect-[16/9] flex flex-col justify-end hover:transform hover:scale-[1.02] hover:shadow-2xl ${
+        props.className || ""
+      }`}
     >
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/50 z-0 transition-opacity duration-300 hover:bg-black/40" />
       <img
         src={imgSrc}
         alt=""
@@ -55,35 +61,45 @@ function ImgWithFallback({
   );
 }
 
-function ProcessFeatureCard({
-  data,
-  alignRight = false,
-}: FeatureCardProps) {
+function ProcessFeatureCard({ data, alignRight = false }: FeatureCardProps) {
   return (
-    <div className={`flex flex-col ${alignRight ? "items-end" : "items-start"}`}>
+    <div
+      className={`flex flex-col ${alignRight ? "items-end" : "items-start"}`}
+    >
       <div className="mb-2">
-        <span className="block text-5xl md:text-7xl font-black text-gray-600/50 select-none">
+        <span className="block text-5xl md:text-7xl font-black text-gray-600/50 select-none transition-colors duration-300 hover:text-gray-500/70">
           {data.stepNum}
         </span>
       </div>
-      <ImgWithFallback image={data.image} className="w-full max-w-xl min-w-[250px]">
+      <ImgWithFallback
+        image={data.image}
+        className="w-full max-w-xl min-w-[250px]"
+      >
         <div
-          className={`p-7 w-full lg:w-3/4 flex flex-col ${alignRight
-            ? "text-right ml-auto items-end"
-            : "text-left mr-auto items-start"
-            }`}
+          className={`p-7 w-full lg:w-3/4 flex flex-col ${
+            alignRight
+              ? "text-right ml-auto items-end"
+              : "text-left mr-auto items-start"
+          }`}
         >
           {data.subtitle && (
-            <div className="text-base md:text-lg  italic font-medium mb-2">
+            <div className="text-base md:text-lg italic font-medium mb-2 transition-transform duration-300 hover:translate-x-2">
               {data.subtitle}
             </div>
           )}
-          <h3 className="font-bold text-lg md:text-xl mb-1">{data.title}</h3>
+          <h3 className="font-bold text-lg md:text-xl mb-1 transition-colors duration-300 hover:text-yellow-400">
+            {data.title}
+          </h3>
           <div className="flex">
-            <p className="opacity-80 text-gray-300 text-sm md:text-base">{data.desc}  <NavLink to="#" className="text-white text-sm mt-2 ">
-            See more →
-          </NavLink></p>
-         
+            <p className="opacity-80 text-gray-300 text-sm md:text-base transition-opacity duration-300 hover:opacity-100">
+              {data.desc}
+              <NavLink
+                to="#"
+                className="text-white text-sm mt-2 transition-all duration-300 hover:text-yellow-400 hover:pl-2"
+              >
+                See more →
+              </NavLink>
+            </p>
           </div>
         </div>
       </ImgWithFallback>
@@ -92,7 +108,6 @@ function ProcessFeatureCard({
 }
 
 const processSteps: FeatureCardData[] = [
-
   {
     stepNum: "01",
     image: step2Img,
@@ -137,8 +152,6 @@ const processSteps: FeatureCardData[] = [
   },
 ];
 
-
-
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
 
@@ -158,18 +171,24 @@ const ProcessPage = () => {
       {/* HERO */}
       <section className="w-full max-w-7xl border-[1px] border-gray-700 mx-auto grid md:grid-cols-2 gap-10  items-center relative">
         <div className="p-4">
-          <h1 className="text-3xl md:text-5xl font-black mb-6">영상제작 프로세스​</h1>
+          <h1 className="text-3xl md:text-5xl font-black mb-6">
+            영상제작 프로세스​
+          </h1>
           <p className="text-white/85 text-lg md:text-xl mb-2">
-            비디오크루만의 영상제작 프로세스를 통해 고객의 니즈에 부합하는<br className="hidden md:block" />
+            비디오크루만의 영상제작 프로세스를 통해 고객의 니즈에 부합하는
+            <br className="hidden md:block" />
             최적의 콘텐츠를 디자인하여 제공합니다.
           </p>
           <p className="text-xs text-gray-400 mt-4">
             *과업의 형태에 따라 프로세스는 변동될 수 있습니다.
           </p>
         </div>
-      
-          <ImgWithFallback children={""} image={heroImg} className=" h-full aspect-[16/9] border-[1.5px] border-gray-700 shadow-lg" />
-        
+
+        <ImgWithFallback
+          children={""}
+          image={heroImg}
+          className=" h-full aspect-[16/9] border-[1.5px] border-gray-700 shadow-lg"
+        />
       </section>
 
       {/* TIMELINE */}
@@ -189,7 +208,11 @@ const ProcessPage = () => {
             }
 
             const cardWidth = "47%";
-            const cardPositionClass = isMobile ? "left-1/2 transform -translate-x-1/2" : isRight ? "right-0" : "left-0";
+            const cardPositionClass = isMobile
+              ? "left-1/2 transform -translate-x-1/2"
+              : isRight
+              ? "right-0"
+              : "left-0";
 
             return (
               <React.Fragment key={step.stepNum}>
@@ -201,7 +224,10 @@ const ProcessPage = () => {
                     zIndex: 10 + idx,
                   }}
                 >
-                  <ProcessFeatureCard data={step} alignRight={!isMobile && isRight} />
+                  <ProcessFeatureCard
+                    data={step}
+                    alignRight={!isMobile && isRight}
+                  />
                 </div>
 
                 {/* ARROW CONNECTOR */}
@@ -267,4 +293,4 @@ const ProcessPage = () => {
   );
 };
 
-export default ProcessPage;
+export default ProcessPage; // Rest of the code remains the same...
