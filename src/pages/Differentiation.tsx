@@ -161,7 +161,7 @@ const DifferentiatorPage = () => {
             </div>
             <div className="w-full mt-12 flex justify-center ">
               <NavLink
-                to="portfolio"
+                 to="/contact"
                 className="px-8 py-3 bg-[#1575F9] text-white font-bold font-sans rounded hover:bg-[#0053c7] transition"
               >
                 문의하기
