@@ -1,4 +1,3 @@
-
 // Update these paths to match your project
 import aboutHeroImg from "../assets/about/hero.webp";
 import core1 from "../assets/about/c1.webp";
@@ -8,12 +7,13 @@ import wc1 from "../assets/about/Image/wc1.webp";
 import wc2 from "../assets/about/Image/wc2.webp";
 import wc3 from "../assets/about/Image/wc3.webp";
 import backupbg from "../assets/home/back1.png";
-import FeatureCard, { type FeatureCardData } from "../components/common/FeatureCard";
+import FeatureCard, {
+  type FeatureCardData,
+} from "../components/common/FeatureCard";
 import LogoSlider from "../components/common/LogoSlider";
 import HeroSection from "../components/common/HeroSection";
 import FullWidthBackground from "../components/common/FullWithBg";
 import backdownbg from "../assets/home/back2.png";
-
 
 const sliderTexts = [
   {
@@ -60,8 +60,6 @@ const coreValueCards: FeatureCardData[] = [
   },
 ];
 
-
-
 export default function About() {
   return (
     <main className="bg-black text-white  font-sans w-full pt-24">
@@ -71,17 +69,19 @@ export default function About() {
           <div>
             <p className="text-gray-400">Who we are, Video Crew​</p>
             <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4">
-              스토리로 말하는 영상 콘텐츠,<br />
-              시선을 사로잡는 영상,<br />
-              더 이상 고민하지 마세요!
+              스토리로 말하는 영상 콘텐츠,
+              <br />
+              시선을 사로잡는 영상,
+              <br />더 이상 고민하지 마세요!
             </h1>
           </div>
           <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mb-8">
-            비디오크루는 다양한 업종의 프로젝트 경험과 탄탄한 영상 기획,
-            촬영, 편집, 컨텐츠 마케팅까지<br className="hidden md:inline" />
-            영상 콘텐츠의 A부터 Z까지 직접 책임집니다.<br />
-            언제나 고객 중심, 언제나 결과 중심,
-            언제나 새로운 시각을 추구합니다.
+            비디오크루는 다양한 업종의 프로젝트 경험과 탄탄한 영상 기획, 촬영,
+            편집, 컨텐츠 마케팅까지
+            <br className="hidden md:inline" />
+            영상 콘텐츠의 A부터 Z까지 직접 책임집니다.
+            <br />
+            언제나 고객 중심, 언제나 결과 중심, 언제나 새로운 시각을 추구합니다.
           </p>
         </div>
       </section>
@@ -95,7 +95,8 @@ export default function About() {
           Core Value
         </h2>
         <p className="text-center text-base text-white/80 mb-12">
-          비디오크루의 핵심가치와 철학, 그리고 원칙을 소개합니다.<br />
+          비디오크루의 핵심가치와 철학, 그리고 원칙을 소개합니다.
+          <br />
           우리는 언제나 '고객중심', '문제해결력', '결과중심' 으로 움직입니다.
         </p>
         <FeatureCard data={coreValueCards} />
@@ -111,7 +112,7 @@ export default function About() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
-            className="relative aspect-square flex flex-col justify-end p-7 text-white border-[1px] border-gray-800"
+            className="relative aspect-square flex flex-col justify-end p-7 text-white border-[1px] border-gray-800 transition-all duration-300 hover:scale-[1.02] hover:border-white/50 cursor-pointer"
             style={{
               backgroundImage: `url(${wc1})`,
               backgroundSize: "cover",
@@ -119,14 +120,19 @@ export default function About() {
               boxShadow: "0px 4px 32px rgba(22,29,43,0.25)",
             }}
           >
-            <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative z-10 w-full lg:w-[60%]">
-              <div className="font-bold text-lg mb-2">Agile Performance</div>
-              <div className="opacity-80 text-sm">빠르게 기획, 실행, 피드백하며 끊임없이 개선하는 에자일 방식으로 일합니다.</div>
+            <div className="absolute inset-0 bg-black/50 transition-all duration-300 hover:bg-black/40"></div>
+            <div className="relative z-10 w-full lg:w-[60%] transform transition-all duration-300 group-hover:translate-y-[-10px]">
+              <div className="font-bold text-lg mb-2 hover:text-blue-400">
+                Agile Performance
+              </div>
+              <div className="opacity-80 text-sm">
+                빠르게 기획, 실행, 피드백하며 끊임없이 개선하는 에자일 방식으로
+                일합니다.
+              </div>
             </div>
           </div>
           <div
-            className="relative aspect-square flex flex-col justify-end p-7 text-white border-[1px] border-gray-800"
+            className="relative aspect-square flex flex-col justify-end p-7 text-white border-[1px] border-gray-800 transition-all duration-300 hover:scale-[1.02] hover:border-white/50 cursor-pointer"
             style={{
               backgroundImage: `url(${wc2})`,
               backgroundSize: "cover",
@@ -134,10 +140,14 @@ export default function About() {
               boxShadow: "0px 4px 32px rgba(22,29,43,0.25)",
             }}
           >
-            <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative z-10 w-full lg:w-[60%]">
-              <div className="font-bold text-lg mb-2">Effectiveness</div>
-              <div className="opacity-80 text-sm">모든 회의와 결정, 실행의 이유를 명확히 결과 중심으로 나아갑니다.</div>
+            <div className="absolute inset-0 bg-black/50 transition-all duration-300 hover:bg-black/40"></div>
+            <div className="relative z-10 w-full lg:w-[60%] transform transition-all duration-300 group-hover:translate-y-[-10px]">
+              <div className="font-bold text-lg mb-2 hover:text-blue-400">
+                Effectiveness
+              </div>
+              <div className="opacity-80 text-sm">
+                모든 회의와 결정, 실행의 이유를 명확히 결과 중심으로 나아갑니다.
+              </div>
             </div>
           </div>
         </div>
@@ -150,6 +160,10 @@ export default function About() {
       flex flex-col justify-end 
       p-7 text-white 
       border-[1px] border-gray-800
+      transition-all duration-300 
+      hover:scale-[1.01] 
+      hover:border-white/50
+      cursor-pointer
     "
             style={{
               backgroundImage: `url(${wc3})`,
@@ -159,16 +173,17 @@ export default function About() {
               boxShadow: "0px 4px 32px rgba(22,29,43,0.25)",
             }}
           >
-            <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative z-10 w-full lg:w-[60%]">
-              <div className="font-bold text-lg mb-2">Knowledge Sharing</div>
+            <div className="absolute inset-0 bg-black/50 transition-all duration-300 hover:bg-black/40"></div>
+            <div className="relative z-10 w-full lg:w-[60%] transform transition-all duration-300 group-hover:translate-y-[-10px]">
+              <div className="font-bold text-lg mb-2 hover:text-blue-400">
+                Knowledge Sharing
+              </div>
               <div className="opacity-80 text-sm">
                 팀원간 노하우, 정보, 자료를 적극적으로 공유하며 함께 성장합니다.
               </div>
             </div>
           </div>
         </div>
-
       </section>
     </main>
   );
