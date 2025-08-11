@@ -13,6 +13,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
 import AdminContact from "./pages/admin/AdminContact";
+import AdminUpload from "./pages/admin/AdminUpload";
 
 function Layout() {
   return (
@@ -29,9 +30,9 @@ function Layout() {
 function AdminLayout() {
   return (
     <ProtectedRoute>
-      <div className="bg-black text-white font-sans flex">
+      <div className="bg-black text-white font-sans flex min-h-screen">
         <AdminSidebar />
-        <main className="flex-1 ml-64">
+        <main className="flex-1 lg:ml-64 w-full">
           <Outlet />
         </main>
       </div>
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin-login",
-    element: <AdminLogin />
+    element: <AdminLogin />,
   },
   {
     element: <AdminLayout />,
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
       { path: "/admin", element: <AdminDashboard /> },
       { path: "/admin/portfolio", element: <AdminPortfolio /> },
       { path: "/admin/contact", element: <AdminContact /> },
+      { path: "/admin/upload", element: <AdminUpload /> },
     ],
   },
 ]);
