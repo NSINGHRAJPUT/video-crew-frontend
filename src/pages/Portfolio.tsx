@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import left from '../assets/portfolio/left.jpeg';
-import right from '../assets/portfolio/right.jpeg';
-import ImgWithFallback from '../utils/FallbackImage';
+import { useState, useEffect } from "react";
+import left from "../assets/portfolio/left.jpeg";
+import right from "../assets/portfolio/right.jpeg";
+import ImgWithFallback from "../utils/FallbackImage";
 
 interface PortfolioItem {
   _id: string;
@@ -13,15 +13,31 @@ interface PortfolioItem {
 const VideoPortfolio = () => {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState<PortfolioItem | null>(null);
+
+  const getYouTubeId = (url: string) => {
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    return match ? match[1] : null;
+  };
+
+  const isYouTubeUrl = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be');
+  };
+
+  const isCloudinaryUrl = (url: string) => {
+    return url.includes('cloudinary.com');
+  };
 
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const response = await fetch('https://video-crew-backend-production.up.railway.app/api/portfolio/');
+        const response = await fetch(
+          "https://video-crew-backend-production.up.railway.app/api/portfolio/"
+        );
         const data = await response.json();
         setPortfolioItems(data);
       } catch (error) {
-        console.error('Error fetching portfolio:', error);
+        console.error("Error fetching portfolio:", error);
       } finally {
         setLoading(false);
       }
@@ -30,30 +46,14 @@ const VideoPortfolio = () => {
     fetchPortfolio();
   }, []);
 
-
   return (
     <div className="w-full text-white">
       {/* Header */}
-      
+
       {/* Main Content */}
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative z-10 flex flex-col items-center justify-center min-h-[70vh] px-6 overflow-hidden bg-black">
-          {/* Left Background Image */}
-           <img
-            src={left}
-            alt="Left background"
-            className="absolute left-0 top-[50%] transform -translate-y-1/2 w-64 md:w-80 lg:w-[28rem] z-10 pointer-events-none mix-blend-overlay opacity-50"
-
-          />
-          {/* Right Background Image */}
-          <img
-            src={right}
-            alt="Right background"
-            className="absolute right-0 top-[50%] transform -translate-y-1/2 w-64 md:w-80 lg:w-[28rem] z-10 pointer-events-none mix-blend-overlay "
-
-          />
-
           {/* Foreground Content */}
           <div className="text-center max-w-7xl mx-auto z-10">
             <p className="text-sm text-gray-400 mb-8 tracking-widest uppercase">
@@ -61,7 +61,8 @@ const VideoPortfolio = () => {
             </p>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-16 leading-tight">
-              We Create Beautiful,<br />
+              We Create Beautiful,
+              <br />
               <span className="text-blue-500">Practical Works</span>
             </h1>
 
@@ -79,8 +80,6 @@ const VideoPortfolio = () => {
           </div>
         </section>
 
-
-
         {/* Portfolio Grid */}
         <div className="px-8 py-16">
           <div className="max-w-6xl mx-auto space-y-6">
@@ -90,7 +89,10 @@ const VideoPortfolio = () => {
               </div>
             ) : (
               portfolioItems.map((item) => (
-                <div key={item._id} className="group relative overflow-hidden rounded-2xl">
+                <div
+                  key={item._id}
+                  className="group relative overflow-hidden rounded-2xl"
+                >
                   <div className="aspect-[16/9] relative bg-gradient-to-br from-gray-800 to-gray-900">
                     <ImgWithFallback
                       src={item.thumbnail_url}
@@ -98,19 +100,20 @@ const VideoPortfolio = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute bottom-6 right-6">
-                      <button 
-                        onClick={() => {
-                          console.log(item.video_url);
-                          return window.open(item.video_url, '_blank')
-                        }}
+                      <button
+                        onClick={() => setSelectedVideo(item)}
                         className="flex items-center bg-black/80 backdrop-blur-sm text-white rounded-full px-4 py-2 hover:bg-black/70 transition"
                       >
                         <div className="w-6 h-6 bg-white text-black rounded-full flex items-center justify-center text-xs mr-3">
                           ▶
                         </div>
                         <div className="flex flex-col items-start cursor-pointer">
-                          <span className="text-sm font-semibold">{item.title}</span>
-                          <span className="text-xs text-gray-300">Play Video</span>
+                          <span className="text-sm font-semibold">
+                            {item.title}
+                          </span>
+                          <span className="text-xs text-gray-300">
+                            Play Video
+                          </span>
                         </div>
                       </button>
                     </div>
@@ -128,9 +131,45 @@ const VideoPortfolio = () => {
             </div>
           )}
         </div>
+
+        {/* Video Modal */}
+        {selectedVideo && (
+          <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div className="relative w-full max-w-4xl aspect-video">
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10"
+              >
+                ✕
+              </button>
+              {isYouTubeUrl(selectedVideo.video_url) ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${getYouTubeId(selectedVideo.video_url)}?autoplay=1`}
+                  className="w-full h-full rounded-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : isCloudinaryUrl(selectedVideo.video_url) ? (
+                <video
+                  src={selectedVideo.video_url}
+                  className="w-full h-full rounded-lg"
+                  controls
+                  autoPlay
+                />
+              ) : (
+                <iframe
+                  src={selectedVideo.video_url}
+                  className="w-full h-full rounded-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
-};
+}
 
 export default VideoPortfolio;
