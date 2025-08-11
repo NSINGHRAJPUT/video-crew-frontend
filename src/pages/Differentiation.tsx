@@ -57,7 +57,15 @@ const sliderTexts = [
   },
 ];
 
-function ImgWithFallback({ src, alt, className }: { src: string; alt: string; className?: string }) {
+function ImgWithFallback({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
   const [imgSrc, setImgSrc] = React.useState(src);
   return (
     <img
@@ -72,31 +80,32 @@ function ImgWithFallback({ src, alt, className }: { src: string; alt: string; cl
 
 const DifferentiatorPage = () => {
   return (
-    <div className="text-white  min-h-screen w-full pt-24 font-sans">
+    <div className="text-white min-h-screen w-full pt-24 font-sans">
       {/* Hero Section */}
-      <section className="relative w-full max-w-7xl mx-auto">
-        <section className="w-full bg-[#090A0C] overflow-hidden ">
-          <div className="w-full  md:flex  justify-between items-center">
-            <div >
-              <p className="text-sm text-gray-400 mb-2">왜 비디오크루를 선택해야 할까요? ​</p>
-              <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4">
+      <section className="relative max-w-7xl mx-auto">
+        <section className="w-full bg-[#090A0C] overflow-hidden hover:bg-[#0c0d10] transition-colors duration-300">
+          <div className="w-full md:flex justify-between items-center">
+            <div>
+              <p className="text-sm text-gray-400 mb-2 hover:text-gray-300 transition-colors">
+                왜 비디오크루를 선택해야 할까요? ​
+              </p>
+              <h1 className="text-3xl md:text-4xl font-black drop-shadow-md mb-4 hover:text-blue-400 transition-colors">
                 비디오크루만의 특별함
               </h1>
             </div>
-            <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mb-8">
-              컨설턴트가 스토리를 입히고, 전문 디자이너와 촬영감독, PD가​ 1:1 맞춤 설계된
-              영상을 제공하며, 차별화된 스토리와 다양한 선택지를 제시합니다.
+            <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mb-8 hover:text-gray-300 transition-colors">
+              컨설턴트가 스토리를 입히고, 전문 디자이너와 촬영감독, PD가​ 1:1
+              맞춤 설계된 영상을 제공하며, 차별화된 스토리와 다양한 선택지를
+              제시합니다.
             </p>
           </div>
         </section>
 
-        <div className="w-[84vw] mx-auto border-[1px] border-gray-800">
+        <div className="mx-auto border-[1px] border-gray-800 hover:border-gray-700 transition-colors">
           <HeroSection sliderTexts={sliderTexts} backgroundImage={heroimg} />
-
         </div>
-
       </section>
-        <FeatureSection />
+      <FeatureSection />
 
       {/* Differentiator Cards */}
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -106,32 +115,35 @@ const DifferentiatorPage = () => {
             return (
               <section
                 key={item.num}
-                className={`flex flex-col-reverse md:flex-row ${isEven ? "md:flex-row-reverse" : ""
-                  } items-center gap-10 md:gap-20`}
+                className={`flex flex-col-reverse md:flex-row ${
+                  isEven ? "md:flex-row-reverse" : ""
+                } items-center gap-10 md:gap-20 hover:transform hover:scale-[1.02] transition-transform duration-300`}
               >
                 {/* Text Block */}
                 <div className="flex-1 w-full">
                   <div className="relative pl-0 md:pl-10">
                     <div className="mb-2">
-                      <span className="block text-5xl md:text-7xl font-black text-gray-600/50 select-none">
+                      <span className="block text-5xl md:text-7xl font-black text-gray-600/50 select-none hover:text-gray-500/50 transition-colors">
                         {item.num}
                       </span>
                     </div>
                     <div className="relative z-10">
-                      <h2 className="text-xl md:text-3xl font-bold mb-3 mt-3 md:mt-0">
+                      <h2 className="text-xl md:text-3xl font-bold mb-3 mt-3 md:mt-0 hover:text-blue-400 transition-colors">
                         {item.title}
                       </h2>
-                      <p className="text-base md:text-lg text-white/80">{item.desc}</p>
+                      <p className="text-base md:text-lg text-white/80 hover:text-white transition-colors">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
                 </div>
                 {/* Image Block */}
                 <div className="flex-1 w-full max-w-lg">
-                  <div className="overflow-hidden border border-gray-800 shadow-xl aspect-[16/10] bg-[#16191e]">
+                  <div className="overflow-hidden border border-gray-800 shadow-xl aspect-[16/10] bg-[#16191e] hover:border-gray-600 transition-colors">
                     <ImgWithFallback
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                 </div>
@@ -141,10 +153,9 @@ const DifferentiatorPage = () => {
         </div>
       </div>
 
-
       {/* Stats Section with Background */}
       <div
-        className="py-14 px-6 md:px-20 pb-20 "
+        className="py-14 px-6 md:px-20 pb-20 hover:opacity-90 transition-opacity duration-300"
         style={{
           backgroundImage: `url(${statsbg})`,
           backgroundSize: "100% 100%",
@@ -153,16 +164,15 @@ const DifferentiatorPage = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="flex flex-col items-center justify-center  mx-auto mt-5 pb-4">
+        <div className="flex flex-col items-center justify-center mx-auto mt-5 pb-4">
           <div className="text-center text-white">
-            <div className="text-3xl mb-1">
-              업계 최고 수준의 맞춤형 영상 콘텐츠
-              비디오크루와 함께하세요!
+            <div className="text-3xl mb-1 hover:text-blue-400 transition-colors">
+              업계 최고 수준의 맞춤형 영상 콘텐츠 비디오크루와 함께하세요!
             </div>
-            <div className="w-full mt-12 flex justify-center ">
+            <div className="w-full mt-12 flex justify-center">
               <NavLink
-                 to="/contact"
-                className="px-8 py-3 bg-[#1575F9] text-white font-bold font-sans rounded hover:bg-[#0053c7] transition"
+                to="/contact"
+                className="px-8 py-3 bg-[#1575F9] text-white font-bold font-sans rounded hover:bg-[#0053c7] hover:scale-105 transition-all duration-300"
               >
                 문의하기
               </NavLink>
