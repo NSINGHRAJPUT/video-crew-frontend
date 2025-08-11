@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import left from "../assets/portfolio/left.jpeg";
-import right from "../assets/portfolio/right.jpeg";
+
 import ImgWithFallback from "../utils/FallbackImage";
 
 interface PortfolioItem {
