@@ -134,17 +134,17 @@ export default function ContactForm() {
           alert('문의가 성공적으로 전송되었습니다!');
           // FULL reset: form, dropdown states, and errors
           setFormData({
-            name: '',
-            email: '',
-            company: '',
-            website: '',
-            projectType: '',
-            projectDetails: '',
-            budget: '',
-            timeline: '',
-            referralSource: '',
-            description: '',
-            socialMedia: '',
+             name: '',
+    email: '',
+    company: '',
+    website: '',
+    projectType: '',
+    projectDetails: '',
+    budget: '',
+    timeline: '',
+    referralSource: '',
+    description: '',
+    socialMedia: '',
             privacyPolicy: false
           });
           setDropdownStates({
@@ -207,7 +207,12 @@ export default function ContactForm() {
   );
 
   return (
-    <div className="py-6 md:py-12 px-4 md:px-6">
+    <div className="relative py-6 md:py-12 px-4 md:px-6">
+ {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+          <div className="text-white text-xl animate-pulse">전송중...</div>
+        </div>
+      )}
       <div className="max-w-6xl mx-auto">
         <h1 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Contact Us</h1>
 
