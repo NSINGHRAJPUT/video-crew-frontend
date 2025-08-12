@@ -154,6 +154,8 @@ export default function ContactForm() {
             timeline: false,
             referralSource: false
           });
+                    window.location.reload(); // Refresh after success
+
           setErrors({});
         } else {
           alert('문의 전송에 실패했습니다. 다시 시도해주세요.');
